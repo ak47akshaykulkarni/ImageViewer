@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ImageViewer.Views.BlankPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ImageViewer.ViewModels"
+    x:DataType="vm:BlankViewModel">
+    <Grid>
+        <!--  Backlight Background  -->
+        <BoxView
+            x:Name="BacklightBox"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill"
+            Color="Orange" />
+
+        <!--  X-ray Image Overlay  -->
+        <ContentView
+            x:Name="ZoomContainer"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill">
+            <ContentView.GestureRecognizers>
+                <PanGestureRecognizer PanUpdated="OnPanUpdated" />
+            </ContentView.GestureRecognizers>
+            <Image
+                x:Name="XrayImage"
+                Aspect="AspectFit"
+                Opacity="0.8"
+                Source="download.jpeg">
+                <Image.GestureRecognizers>
+                    <PinchGestureRecognizer PinchUpdated="OnPinchUpdated" />
+
+                </Image.GestureRecognizers>
+            </Image>
+        </ContentView>
+        <!--<Image
+            Aspect="AspectFit"
+            HorizontalOptions="Fill"
+            IsVisible="False"
+            Opacity="0.85"
+            Source="download.jpeg"
+            VerticalOptions="Fill" />-->
+
+        <!--  Slider UI  -->
+        <StackLayout
+            Padding="20"
+            BackgroundColor="#80000000"
+            VerticalOptions="End">
+            <Label
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="Backlight Temperature"
+                TextColor="White" />
+
+            <Slider
+                x:Name="TempSlider"
+                Maximum="100"
+                Minimum="0"
+                
+                ValueChanged="OnSliderValueChanged" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
