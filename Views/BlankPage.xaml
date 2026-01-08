@@ -4,8 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:vm="clr-namespace:ImageViewer.ViewModels"
+    xmlns:controls="clr-namespace:ImageViewer.Controls"
+    Shell.NavBarIsVisible="false"
     x:DataType="vm:BlankViewModel">
-    <Grid>
+    <Grid Margin="-30" Padding="-10">
         <!--  Backlight Background  -->
         <BoxView
             x:Name="BacklightBox"
@@ -14,7 +16,7 @@
             Color="Orange" />
 
         <!--  X-ray Image Overlay  -->
-        <ContentView
+        <!-- <ContentView
             x:Name="ZoomContainer"
             HorizontalOptions="Fill"
             VerticalOptions="Fill">
@@ -31,7 +33,21 @@
 
                 </Image.GestureRecognizers>
             </Image>
-        </ContentView>
+        </ContentView> -->
+        <controls:PanPinchContainer
+            x:Name="PanPinchContainer"
+            HorizontalOptions="Fill"
+            VerticalOptions="Fill" >
+            <Image
+                x:Name="XrayImage"
+                Aspect="AspectFit"
+                Opacity="0.8" 
+                Margin="10"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill"
+                Source="download.jpeg">
+            </Image>
+        </controls:PanPinchContainer>
         <!--<Image
             Aspect="AspectFit"
             HorizontalOptions="Fill"
