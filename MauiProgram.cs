@@ -17,6 +17,7 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 		builder.Services.AddSingleton<MainViewModel>();
+		Routing.RegisterRoute("xrayview", typeof(BlankPage));
 
 		builder.Services.AddSingleton<MainPage>();
 

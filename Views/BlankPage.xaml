@@ -7,10 +7,13 @@
     xmlns:controls="clr-namespace:ImageViewer.Controls"
     Shell.NavBarIsVisible="false"
     x:DataType="vm:BlankViewModel">
-    <Grid Margin="-30" Padding="-10">
+    <Grid Margin="-30,0" Padding="-10,0" RowDefinitions="*,Auto" ColumnDefinitions="*,Auto">
         <!--  Backlight Background  -->
-        <BoxView
-            x:Name="BacklightBox"
+        <BoxView Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+                        x:Name="BacklightBox"
             HorizontalOptions="Fill"
             VerticalOptions="Fill"
             Color="Orange" />
@@ -35,6 +38,10 @@
             </Image>
         </ContentView> -->
         <controls:PanPinchContainer
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             x:Name="PanPinchContainer"
             HorizontalOptions="Fill"
             VerticalOptions="Fill" >
@@ -58,21 +65,54 @@
 
         <!--  Slider UI  -->
         <StackLayout
-            Padding="20"
-            BackgroundColor="#80000000"
+            x:Name="SliderLayout"
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Margin="30,0"
+            Padding="10,0"
+            Orientation="Horizontal"
+            HorizontalOptions="FillAndExpand"
             VerticalOptions="End">
-            <Label
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                Text="Backlight Temperature"
-                TextColor="White" />
-
-            <Slider
-                x:Name="TempSlider"
-                Maximum="100"
-                Minimum="0"
-                
-                ValueChanged="OnSliderValueChanged" />
+            <VerticalStackLayout HorizontalOptions="FillAndExpand" Padding="10" BackgroundColor="#80000000">
+                <Label
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="Backlight Temperature"
+                    TextColor="White" />
+                <Slider
+                    x:Name="TempSlider"
+                    Maximum="100"
+                    Minimum="0"
+                    ValueChanged="OnSliderValueChanged" />
+            </VerticalStackLayout>
+            <VerticalStackLayout HorizontalOptions="FillAndExpand" Padding="10" BackgroundColor="#80000000">
+                <Label
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    Text="Magnification Zoom"
+                    TextColor="White" />
+                <Slider
+                    x:Name="zoomSlider"
+                    Maximum="5"
+                    Minimum="1"
+                    ValueChanged="OnZoomSliderValueChanged" />
+            </VerticalStackLayout>
+            
+        </StackLayout>
+        <StackLayout
+            x:Name="HelpLayout"
+            Spacing="10"
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="20,20,0,0"
+            Padding="10"
+            HorizontalOptions="Start"
+            VerticalOptions="Start">
+            <Button x:Name="SettingsBtn"  Grid.Row="0" TextColor="White" BackgroundColor="#80000000" Text="Save" Clicked="Button_Clicked"/>
+            <Button x:Name="PickImageBtn" Grid.Row="0" TextColor="White" BackgroundColor="#80000000" Text="Choose XRay" Clicked="PickImageBtn_Clicked"/>
+            <Button x:Name="FlipHBtn"     Grid.Row="0" TextColor="White" BackgroundColor="#80000000" Text="FlipH" Clicked="FlipHBtn_Clicked"/>
+            <Button x:Name="FlipVBtn"     Grid.Row="0" TextColor="White" BackgroundColor="#80000000" Text="FlipV" Clicked="FlipVBtn_Clicked"/>
         </StackLayout>
     </Grid>
 </ContentPage>

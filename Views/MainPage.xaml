@@ -3,6 +3,30 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:vm="clr-namespace:ImageViewer.ViewModels"
 			 x:Class="ImageViewer.Views.MainPage"
+			 Title="Login"
+			 Shell.NavBarIsVisible="FALSE"
 			 x:DataType="vm:MainViewModel">
-
+			 <Border Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
+				<StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
+				<Entry 
+					Placeholder="login" 
+					WidthRequest="300"
+					Text="admin"
+					x:Name="usernameEntry"
+					BackgroundColor="Transparent"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"/>
+				<Entry 
+					Placeholder="password" 
+					WidthRequest="300"
+					Text="password"
+					x:Name="passwordEntry"
+					IsPassword="True"
+					HorizontalOptions="Center"
+					VerticalOptions="Center"/>
+					<Button 
+					Text="Login" Clicked="Button_Clicked"
+					WidthRequest="100"/>
+				</StackLayout>
+			 </Border>
 </ContentPage>

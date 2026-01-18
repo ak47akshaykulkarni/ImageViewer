@@ -6,18 +6,18 @@
 	xmlns:local="clr-namespace:ImageViewer"
 	xmlns:views="clr-namespace:ImageViewer.Views">
 
-	<!-- <ShellContent
+	<ShellContent
 		Shell.NavBarIsVisible="true"
 		Title="Main"
 		Icon="iconblank.png"
 		ContentTemplate="{DataTemplate views:MainPage}"
-		Route="MainPage" /> -->
-	<ShellContent
+		Route="MainPage" />
+	<!-- <ShellContent
 		Shell.NavBarIsVisible="true"
 		Title="Xray Viewer"
 		Icon="iconblank.png"
 		ContentTemplate="{DataTemplate views:BlankPage}"
-		Route="BlankPage" />
+		Route="BlankPage" /> -->
 	<!-- <ShellContent
 		Shell.NavBarIsVisible="true"
 		Title="Sample"

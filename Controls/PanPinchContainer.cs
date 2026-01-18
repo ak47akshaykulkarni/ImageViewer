@@ -22,6 +22,35 @@ public class PanPinchContainer : ContentView
 
     private double _startScale = 1;
 
+    public double CurrentScale
+    {
+        get => _currentScale;
+        set
+        {
+            _currentScale = value;
+            ScaleFromSliderAsync(value);
+        }
+    }
+    public double PanX
+    {
+        get => _panX;
+        set
+        {
+            _panX = value;
+            Content.TranslationX = value;
+        }
+    }
+
+    public double PanY
+    {
+        get => _panY;
+        set
+        {
+            _panY = value;
+            Content.TranslationY = value;
+        }
+    }
+
     public PanPinchContainer()
     {
         _panGestureRecognizer = new PanGestureRecognizer();
@@ -38,6 +67,8 @@ public class PanPinchContainer : ContentView
 
         _doubleTapGestureRecognizer.Tapped += DoubleTappedAsync;
         GestureRecognizers.Add(_doubleTapGestureRecognizer);
+        AnchorX = 0.5;
+        AnchorY = 0.5;
     }
 
     protected override void OnChildAdded(Element child)
@@ -152,6 +183,25 @@ public class PanPinchContainer : ContentView
             translateTask = ClampTranslationFromScaleOriginAsync(point.Value.X / Width, point.Value.Y / Height, true);
         }
 
+        var scaleTask = ScaleToAsync(_currentScale);
+
+        await Task.WhenAll(translateTask, scaleTask);
+
+        _panX = Content.TranslationX;
+        _panY = Content.TranslationY;
+    }
+
+    private async void ScaleFromSliderAsync(double scale)
+    {
+        _startScale = Content.Scale;
+        _currentScale = _startScale;
+
+        _panX = Content.TranslationX;
+        _panY = Content.TranslationY;
+
+        _currentScale = scale;
+
+        var translateTask = ClampTranslationFromScaleOriginAsync(0.5, 0.5, true);
         var scaleTask = ScaleToAsync(_currentScale);
 
         await Task.WhenAll(translateTask, scaleTask);

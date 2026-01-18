@@ -6,15 +6,35 @@ public partial class BlankPage : ContentPage
     private double startScale = 1;
     private double xOffset = 0;
     private double yOffset = 0;
+    private bool isSettingsVisible = true;
     public BlankPage(BlankViewModel viewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
+        double savedSliderValue = Preferences.Get("sliderValue", 0);
+        if (savedSliderValue == 0)
+        {
+            isSettingsVisible = true;
+            SliderLayout.IsVisible = true;
+            SettingsBtn.Text= "Save";
+        }
+        else
+        {
+            isSettingsVisible = false;
+            SliderLayout.IsVisible = false;
+            SettingsBtn.Text= "Settings";
+        }
+        TempSlider.Value = savedSliderValue;
+        UpdateBacklight(savedSliderValue);
 	}
 
     private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
     {
         UpdateBacklight(e.NewValue);
+    }
+    private void OnZoomSliderValueChanged(object sender, ValueChangedEventArgs e)
+    {
+        PanPinchContainer.CurrentScale= e.NewValue;
     }
 
     private void UpdateBacklight(double value)
@@ -64,6 +84,45 @@ public partial class BlankPage : ContentPage
                 // Optionally snap back or clamp bounds
                 break;
         }
+    }
+
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        Preferences.Set("sliderValue", TempSlider.Value);
+        if (isSettingsVisible)
+        {
+            isSettingsVisible = false;
+            SliderLayout.IsVisible = PickImageBtn.IsVisible =FlipHBtn.IsVisible= FlipVBtn.IsVisible = false;
+            SettingsBtn.Text= "Settings";
+        }
+        else
+        {
+            isSettingsVisible = true;
+            SliderLayout.IsVisible = PickImageBtn.IsVisible =FlipHBtn.IsVisible = FlipVBtn.IsVisible = true;
+            SettingsBtn.Text= "Save";
+        }
+    }
+
+    
+    private async void PickImageBtn_Clicked(object sender, EventArgs e)
+    {
+        var file = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+        {
+            Title = "Please pick XRay file",
+        });
+        if (file == null)
+            return;
+
+        XrayImage.Source = file.FullPath;
+    }
+
+    private void FlipHBtn_Clicked(object sender, EventArgs e)
+    {
+        PanPinchContainer.ScaleX *= -1;
+    }
+    private void FlipVBtn_Clicked(object sender, EventArgs e)
+    {
+        PanPinchContainer.ScaleY *= -1;
     }
 
 
