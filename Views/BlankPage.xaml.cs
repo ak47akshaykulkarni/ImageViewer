@@ -1,4 +1,6 @@
-﻿namespace ImageViewer.Views;
+﻿using Microsoft.UI.Xaml.Controls;
+
+namespace ImageViewer.Views;
 
 public partial class BlankPage : ContentPage
 {
@@ -26,6 +28,7 @@ public partial class BlankPage : ContentPage
         }
         TempSlider.Value = savedSliderValue;
         UpdateBacklight(savedSliderValue);
+        
 	}
 
     private void OnSliderValueChanged(object sender, ValueChangedEventArgs e)
@@ -48,43 +51,43 @@ public partial class BlankPage : ContentPage
         BacklightBox.Color = Color.FromRgb(r, g, b);
     }
 
-    void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
-    {
-        if (e.Status == GestureStatus.Started)
-        {
-            startScale = currentScale;
-        }
-        else if (e.Status == GestureStatus.Running)
-        {
-            currentScale = Math.Max(1, startScale * e.Scale); // Minimum zoom = 1x
-            XrayImage.Scale = currentScale;
-        }
-    }
+    // void OnPinchUpdated(object sender, PinchGestureUpdatedEventArgs e)
+    // {
+    //     if (e.Status == GestureStatus.Started)
+    //     {
+    //         startScale = currentScale;
+    //     }
+    //     else if (e.Status == GestureStatus.Running)
+    //     {
+    //         currentScale = Math.Max(1, startScale * e.Scale); // Minimum zoom = 1x
+    //         XrayImage.Scale = currentScale;
+    //     }
+    // }
 
-    void OnPanUpdated(object sender, PanUpdatedEventArgs e)
-    {
-        switch (e.StatusType)
-        {
-            case GestureStatus.Started:
-                xOffset += e.TotalX;
-                yOffset += e.TotalY;
-                break;
-            case GestureStatus.Running:
-                xOffset = e.TotalX;
-                yOffset = e.TotalY;
-                XrayImage.TranslationX += xOffset;
-                XrayImage.TranslationY += yOffset;
-                break;
+    // void OnPanUpdated(object sender, PanUpdatedEventArgs e)
+    // {
+    //     switch (e.StatusType)
+    //     {
+    //         case GestureStatus.Started:
+    //             xOffset += e.TotalX;
+    //             yOffset += e.TotalY;
+    //             break;
+    //         case GestureStatus.Running:
+    //             xOffset = e.TotalX;
+    //             yOffset = e.TotalY;
+    //             XrayImage.TranslationX += xOffset;
+    //             XrayImage.TranslationY += yOffset;
+    //             break;
 
-            case GestureStatus.Completed:
-                var asdas = e.TotalX;
-                var asdasd = e.TotalY;
-                xOffset = XrayImage.TranslationX;
-                yOffset = XrayImage.TranslationY;
-                // Optionally snap back or clamp bounds
-                break;
-        }
-    }
+    //         case GestureStatus.Completed:
+    //             var asdas = e.TotalX;
+    //             var asdasd = e.TotalY;
+    //             xOffset = XrayImage.TranslationX;
+    //             yOffset = XrayImage.TranslationY;
+    //             // Optionally snap back or clamp bounds
+    //             break;
+    //     }
+    // }
 
     private void Button_Clicked(object sender, EventArgs e)
     {
@@ -113,7 +116,7 @@ public partial class BlankPage : ContentPage
         if (file == null)
             return;
 
-        XrayImage.Source = file.FullPath;
+        // XrayImage.Source = file.FullPath;
     }
 
     private void FlipHBtn_Clicked(object sender, EventArgs e)

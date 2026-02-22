@@ -1,4 +1,5 @@
-﻿namespace ImageViewer;
+﻿// using CommunityToolkit.Maui.MediaElement;
+namespace ImageViewer;
 
 public static class MauiProgram
 {

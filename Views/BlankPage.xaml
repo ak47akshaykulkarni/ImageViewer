@@ -6,6 +6,7 @@
     xmlns:vm="clr-namespace:ImageViewer.ViewModels"
     xmlns:controls="clr-namespace:ImageViewer.Controls"
     Shell.NavBarIsVisible="false"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     x:DataType="vm:BlankViewModel">
     <Grid Margin="-30,0" Padding="-10,0" RowDefinitions="*,Auto" ColumnDefinitions="*,Auto">
         <!--  Backlight Background  -->
@@ -45,15 +46,19 @@
             x:Name="PanPinchContainer"
             HorizontalOptions="Fill"
             VerticalOptions="Fill" >
-            <Image
-                x:Name="XrayImage"
+            <!--<toolkit:MediaElement Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              ShouldShowPlaybackControls="True" />
+             <toolkit:MediaElement
+                x:Name="videoElement"
                 Aspect="AspectFit"
                 Opacity="0.8" 
                 Margin="10"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill"
-                Source="download.jpeg">
-            </Image>
+                Source="video.mp4"
+                AutoPlay="True"
+                ShowsPlaybackControls="False">
+            </toolkit:MediaElement> -->
         </controls:PanPinchContainer>
         <!--<Image
             Aspect="AspectFit"
