@@ -1,32 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 xmlns:vm="clr-namespace:ImageViewer.ViewModels"
-			 x:Class="ImageViewer.Views.MainPage"
-			 Title="Login"
-			 Shell.NavBarIsVisible="FALSE"
-			 x:DataType="vm:MainViewModel">
-			 <Border Padding="10" HorizontalOptions="Center" VerticalOptions="Center">
-				<StackLayout Spacing="10" HorizontalOptions="Center" VerticalOptions="Center">
-				<Entry 
-					Placeholder="login" 
-					WidthRequest="300"
-					Text="admin"
-					x:Name="usernameEntry"
-					BackgroundColor="Transparent"
-					HorizontalOptions="Center"
-					VerticalOptions="Center"/>
-				<Entry 
-					Placeholder="password" 
-					WidthRequest="300"
-					Text="password"
-					x:Name="passwordEntry"
-					IsPassword="True"
-					HorizontalOptions="Center"
-					VerticalOptions="Center"/>
-					<Button 
-					Text="Login" Clicked="Button_Clicked"
-					WidthRequest="100"/>
-				</StackLayout>
-			 </Border>
+<ContentPage
+	x:Class="ImageViewer.Views.MainPage"
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:vm="clr-namespace:ImageViewer.ViewModels"
+	Title="Login"
+	x:DataType="vm:MainViewModel"
+	Shell.NavBarIsVisible="FALSE">
+	<Border
+		Padding="10"
+		HorizontalOptions="Center"
+		VerticalOptions="Center">
+		<StackLayout
+			HorizontalOptions="Center"
+			Spacing="10"
+			VerticalOptions="Center">
+			<Entry
+				x:Name="usernameEntry"
+				BackgroundColor="Transparent"
+				HorizontalOptions="Center"
+				Placeholder="login"
+				Text="admin"
+				VerticalOptions="Center"
+				WidthRequest="300" />
+			<Entry
+				x:Name="passwordEntry"
+				HorizontalOptions="Center"
+				IsPassword="True"
+				Placeholder="password"
+				Text="password"
+				VerticalOptions="Center"
+				WidthRequest="300" />
+			<Button
+				Clicked="Button_Clicked"
+				Text="Login"
+				WidthRequest="100" />
+		</StackLayout>
+	</Border>
 </ContentPage>

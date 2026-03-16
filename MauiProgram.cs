@@ -19,12 +19,14 @@ public static class MauiProgram
 #endif
 		builder.Services.AddSingleton<MainViewModel>();
 		Routing.RegisterRoute("xrayview", typeof(BlankPage));
+		Routing.RegisterRoute("dicompage", typeof(ViewDicomPage));
 
 		builder.Services.AddSingleton<MainPage>();
 
 		builder.Services.AddSingleton<BlankViewModel>();
 
 		builder.Services.AddSingleton<BlankPage>();
+		builder.Services.AddSingleton<ViewDicomPage>();
 
 		builder.Services.AddSingleton<SampleViewModel>();
 
